@@ -12,9 +12,37 @@ This workspace manages multiple independent repositories for convenience. Each r
 
 **For additional project context, see @CLAUDE.private.md and @CLAUDE.local.md** (optional, not included in this repository).
 
-## Git Workflow Policy
+## Contributing Guidelines
 
-**IMPORTANT:** Always ask before committing, pushing, tagging, or running destructive git operations.
+### Code Standards
+
+- Follow YAGNI, SOLID, DRY, and KISS principles
+- Write self-documenting code; comments explain "why", not "what"
+- Keep functions small and focused on a single responsibility
+- Prefer composition over inheritance
+- No magic numbers; use named constants
+- Use strict type checking; avoid `any` or equivalent escape hatches
+- Validate external inputs at system boundaries
+- All new code requires tests — test behavior, not implementation details
+- Documentation describes current state, not development history
+
+### Git Workflow
+
+- Branch from main for new work; never push directly to main
+- Branch naming: `<type>/<description>` where type = feat|fix|docs|chore|refactor|test
+- Conventional commits: `<type>(<scope>): <subject>` — 50 char subject max, imperative mood
+- Atomic commits: one logical change per commit
+- Clean up history via rebase before creating a PR
+- Use rebase to update branches with upstream changes, never merge commits
+
+### Pull Requests
+
+- One logical change per PR; refactoring and behavior changes belong in separate PRs
+- Descriptive titles suitable for release notes (under 70 characters)
+- Descriptions explain motivation (why) and approach (how), not mechanics (what)
+- Reference issues with `closes`, `fixes`, or `resolves` (e.g., "closes #18")
+- All CI checks must pass before merging — no exceptions
+- Use merge commits (not squash) to preserve commit history
 
 ## Independent Repositories
 
@@ -213,40 +241,6 @@ Since each repo is independent, refer to the per-repository CLAUDE.md:
 - **Daemon**: `cd HALPI2-rust-daemon && ./run help`
 - **Docs**: `cd halpi2 && mdbook serve --open`
 - **Hardware**: Open KiCad projects directly
-
-## Git Workflow
-
-### Per-Repository Commits
-
-Each repository manages its own git history. Use conventional commit format:
-
-```
-<type>(<scope>): <subject>
-
-[optional body]
-```
-
-Where `type` = feat|fix|docs|style|refactor|test|chore|perf
-
-Examples:
-```bash
-# In HALPI2-firmware/
-git commit -m "feat(state-machine): add USB port power cycling"
-
-# In HALPI2-rust-daemon/
-git commit -m "fix(i2c): handle timeout during blackout events"
-
-# In halpi2/
-git commit -m "docs(power): update state machine diagram"
-```
-
-### Cross-Repository Changes
-
-When changes affect multiple repos (e.g., new I2C command):
-
-1. Commit changes in each repository separately
-2. Reference related commits in commit messages
-3. Coordinate version bumps if breaking changes occur
 
 ## Key Architectural Patterns
 
