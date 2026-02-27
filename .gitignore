@@ -1,0 +1,41 @@
+CLAUDE.local.md
+
+# Repository overrides
+repos.*.sh
+
+# Sub-repositories and symlinks (cloned by ./run repos:clone)
+HALPI2-*
+halpi2/
+
+# Other directories
+archive/
+FFC-HDMI/
+HALPI2-enclosure/
+images/
+free-x/
+
+# Build artifacts
+*.deb
+*.buildinfo
+*.changes
+
+# Screenshots and images
+*.png
+
+# Tool directories
+.claude/
+.playwright-mcp/
+
+# Local files
+halos
+branches_to_cleanup.txt
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
